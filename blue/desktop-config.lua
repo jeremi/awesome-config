@@ -33,7 +33,7 @@ function desktop:init(args)
 	local netspeed = { geometry = wgeometry(grid, places.netspeed, workarea) }
 
 	netspeed.args = {
-		interface    = "wlp60s0",
+		interface    = "wlp3s0",
 		maxspeed     = { up = 6*1024^2, down = 6*1024^2 },
 		crit         = { up = 6*1024^2, down = 6*1024^2 },
 		timeout      = 2,
@@ -44,10 +44,10 @@ function desktop:init(args)
 
 	-- SSD speed
 	--------------------------------------------------------------------------------
-	local ssdspeed = { geometry = wgeometry(grid, places.ssdspeed, workarea) }
+	local ssdspeed = { geometry = wgeometry(grid, places.transm, workarea) }
 
 	ssdspeed.args = {
-		interface = "nvme0n1",
+		interface = "nvme0n1p8",
 		meter_function = system.disk_speed,
 		timeout   = 2,
 		label     = "SOLID DRIVE"
@@ -109,10 +109,10 @@ function desktop:init(args)
 		sensors  = {
 			{ meter_function = system.fs_info, maxm = 100, crit = 80, args = "/" },
 			{ meter_function = system.fs_info, maxm = 100, crit = 80, args = "/home" },
-			{ meter_function = system.fs_info, maxm = 100, crit = 80, args = "/opt" },
+			{ meter_function = system.fs_info, maxm = 100, crit = 80, args = "/mnt/shared" },
 			{ meter_function = system.fs_info, maxm = 100, crit = 80, args = "/mnt/media" }
 		},
-		names   = {"root", "home", "misc", "data"},
+		names   = {"root", "home", "share", "data"},
 		timeout = 300
 	}
 
@@ -128,10 +128,10 @@ function desktop:init(args)
 	thermal.args = {
 		sensors = {
 			{ meter_function = system.thermal.sensors, args = "'Package id 0'", maxm = 100, crit = 75 },
-			{ meter_function = system.thermal.hddtemp, args = { disk = "/dev/sda" }, maxm = 60, crit = 45 },
+			{ meter_function = system.thermal.hddtemp, args = { disk = "/dev/nvme0n1" }, maxm = 60, crit = 45 },
 			{ meter_function = system.thermal.nvoptimus, maxm = 105, crit = 80 }
 		},
-		names   = { "cpu", "hdd", "gpu" },
+		names   = { "cpu", "ssd", "gpu" },
 		timeout = 5
 	}
 
@@ -142,10 +142,10 @@ function desktop:init(args)
 	-- Initialize all desktop widgets
 	--------------------------------------------------------------------------------
 	netspeed.widget = redflat.desktop.speedgraph(netspeed.args, netspeed.geometry, netspeed.style)
-	ssdspeed.widget = redflat.desktop.speedgraph(ssdspeed.args, ssdspeed.geometry, ssdspeed.style)
-	hddspeed.widget = redflat.desktop.speedgraph(hddspeed.args, hddspeed.geometry, hddspeed.style)
+	-- ssdspeed.widget = redflat.desktop.speedgraph(ssdspeed.args, ssdspeed.geometry, ssdspeed.style)
+	-- hddspeed.widget = redflat.desktop.speedgraph(hddspeed.args, hddspeed.geometry, hddspeed.style)
 	cpumem.widget = redflat.desktop.multim(cpumem.args, cpumem.geometry, cpumem.style)
-	transm.widget = redflat.desktop.multim(transm.args, transm.geometry, transm.style)
+	-- transm.widget = redflat.desktop.multim(transm.args, transm.geometry, transm.style)
 	disks.widget = redflat.desktop.dashpack(disks.args, disks.geometry, disks.style)
 	thermal.widget = redflat.desktop.simpleline(thermal.args, thermal.geometry, thermal.style)
 end

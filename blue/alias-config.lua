@@ -7,6 +7,7 @@ appnames = {}
 appnames["Exaile"              ] = "EXAILE"
 appnames["Smplayer"            ] = "SMPL"
 appnames["Firefox"             ] = "FIFOX"
+appnames["Google-chrome"       ] = "CHROM"
 appnames["Gnome-terminal"      ] = "GTERM"
 appnames["Gnome-system-monitor"] = "SYSMN"
 appnames["Gthumb"              ] = "THUMB"
@@ -21,8 +22,10 @@ appnames["VirtualBox"          ] = "VBOX"
 appnames["Keepassx"            ] = "KPASS"
 appnames["keepassxc"           ] = "KPASS"
 appnames["Evince"              ] = "EVINCE"
-appnames["jetbrains-pycharm-ce"] = "PYCRM"
+appnames["jetbrains-pycharm-ce"] = "PYCHA"
+appnames["jetbrains-pycharm"   ] = "PYCHA"
 appnames["Qemu-system-x86_64"  ] = "QEMU"
+appnames["Termite"             ] = "TERM"
 
 return appnames
 

@@ -23,11 +23,11 @@ function env:init(args)
 	local theme = args.theme or "red"
 
 	-- environment vars
-	self.terminal = args.terminal or "urxvt"
+	self.terminal = args.terminal or "termite"
 	self.mod = args.mod or "Mod4"
-	self.fm = args.fm or "nemo"
+	self.fm = args.fm or "thunar"
 	self.mail = args.mail or "evolution"
-	self.player = args.player or "exaile"
+	self.player = args.player or "spotify"
 	self.upgrades = args.upgrades or "bash -c 'pacman -Qu | grep -v ignored | wc -l'"
 	self.home = os.getenv("HOME")
 	self.themedir = awful.util.get_configuration_dir() .. "themes/" .. theme

@@ -212,14 +212,14 @@ function hotkeys:init(args)
 			{ env.mod, "Shift" }, "a", function() appswitcher:switch() end,
 			{} -- hidden key
 		},
-		{
-			{ env.mod }, "q", function() appswitcher:switch({ reverse = true }) end,
-			{ description = "Select previous app", group = "Navigation" }
-		},
-		{
-			{ env.mod, "Shift" }, "q", function() appswitcher:switch({ reverse = true }) end,
-			{} -- hidden key
-		},
+		-- {
+		-- 	{ env.mod }, "q", function() appswitcher:switch({ reverse = true }) end,
+		-- 	{ description = "Select previous app", group = "Navigation" }
+		-- },
+		-- {
+		-- 	{ env.mod, "Shift" }, "q", function() appswitcher:switch({ reverse = true }) end,
+		-- 	{} -- hidden key
+		-- },
 		{
 			{}, "Super_L", function() appswitcher:hide() end,
 			{ description = "Activate and exit", group = "Action" }
@@ -521,10 +521,10 @@ function hotkeys:init(args)
 			{ "Mod4" }, "a", function() map.switch_active(1) end,
 			{ description = "Activate next group", group = "Layout" }
 		},
-		{
-			{ "Mod4" }, "q", function() map.switch_active(-1) end,
-			{ description = "Activate previous group", group = "Layout" }
-		},
+		-- {
+		-- 	{ "Mod4" }, "q", function() map.switch_active(-1) end,
+		-- 	{ description = "Activate previous group", group = "Layout" }
+		-- },
 		{
 			{ "Mod4" }, "]", function() map.move_group(1) end,
 			{ description = "Move active group to the top", group = "Layout" }
@@ -686,21 +686,25 @@ function hotkeys:init(args)
 			{ env.mod }, "a", nil, function() appswitcher:show({ filter = current }) end,
 			{ description = "Switch to next with current tag", group = "Application switcher" }
 		},
-		{
-			{ env.mod }, "q", nil, function() appswitcher:show({ filter = current, reverse = true }) end,
-			{ description = "Switch to previous with current tag", group = "Application switcher" }
-		},
+		-- {
+		-- 	{ env.mod }, "q", nil, function() appswitcher:show({ filter = current, reverse = true }) end,
+		-- 	{ description = "Switch to previous with current tag", group = "Application switcher" }
+		-- },
 		{
 			{ env.mod, "Shift" }, "a", nil, function() appswitcher:show({ filter = allscr }) end,
 			{ description = "Switch to next through all tags", group = "Application switcher" }
 		},
-		{
-			{ env.mod, "Shift" }, "q", nil, function() appswitcher:show({ filter = allscr, reverse = true }) end,
-			{ description = "Switch to previous through all tags", group = "Application switcher" }
-		},
+		-- {
+		-- 	{ env.mod, "Shift" }, "q", nil, function() appswitcher:show({ filter = allscr, reverse = true }) end,
+		-- 	{ description = "Switch to previous through all tags", group = "Application switcher" }
+		-- },
 
 		{
 			{}, "XF86MonBrightnessUp", function() brightness({ step = 2 }) end,
+			{ description = "Increase brightness", group = "Brightness control" }
+		},
+		{
+			{}, "XF86Explorer", function() awful.spawn.with_shell("xscreensaver-command -lock") end,
 			{ description = "Increase brightness", group = "Brightness control" }
 		},
 		{
@@ -734,7 +738,7 @@ function hotkeys:init(args)
 			{ description = "Reduce volume", group = "Volume control" }
 		},
 		{
-			{ env.mod }, "v", volume_mute,
+			{}, "XF86AudioMute", volume_mute,
 			{ description = "Toggle mute", group = "Volume control" }
 		},
 
@@ -782,7 +786,7 @@ function hotkeys:init(args)
 			{ description = "Toggle fullscreen", group = "Client keys" }
 		},
 		{
-			{ env.mod }, "F4", function(c) c:kill() end,
+			{ env.mod, Shift}, "q", function(c) c:kill() end,
 			{ description = "Close", group = "Client keys" }
 		},
 		{
@@ -800,6 +804,10 @@ function hotkeys:init(args)
 		{
 			{ env.mod }, "m", function(c) c.maximized = not c.maximized; c:raise() end,
 			{ description = "Maximize", group = "Client keys" }
+		},
+		{
+			{ env.mod }, "o", function (c) c:move_to_screen() end,
+			{ description = "Move to screen", group = "Client keys" }
 		}
 	}
 

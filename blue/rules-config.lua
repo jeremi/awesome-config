@@ -72,7 +72,19 @@ function rules:init(args)
 		{
 			rule_any   = { type = { "normal" }},
 			properties = { placement = awful.placement.no_overlap + awful.placement.no_offscreen }
-		}
+		},
+		{ rule = { class = "[Ss]potify" },
+  		properties = { tag = "7 Media" } },
+		{ rule = { class = "jetbrains-pycharm" },
+			properties = { tag = "3 Code" } },
+		{ rule = { class = "Code" },
+			properties = { tag = "3 Code" } },
+		{ rule = { class = "TelegramDesktop" },
+			properties = { tag = "5 Chat" } },
+		{ rule = { class = "Skype" },
+			properties = { tag = "5 Chat" } },
+		{ rule = { class = "Slack" },
+			properties = { tag = "5 Chat" } }
 	}
 
 
